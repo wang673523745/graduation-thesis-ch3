@@ -1,0 +1,54 @@
+# 红外可见光Agent系统 - 依赖包列表
+
+# 核心依赖
+numpy>=1.21.0
+opencv-python>=4.5.0
+scipy>=1.7.0
+scikit-image>=0.18.0
+matplotlib>=3.4.0
+pandas>=1.3.0
+
+# Web框架
+fastapi>=0.68.0
+uvicorn[standard]>=0.15.0
+python-multipart>=0.0.5
+
+# 数据处理
+Pillow>=8.3.0
+imageio>=2.9.0
+
+# 机器学习
+scikit-learn>=1.0.0
+torch>=1.9.0
+torchvision>=0.10.0
+
+# 配置管理
+PyYAML>=5.4.0
+pydantic>=1.8.0
+
+# 日志和监控
+loguru>=0.5.0
+psutil>=5.8.0
+
+# 图像处理增强
+PyWavelets>=1.1.0
+mahotas>=1.4.0
+
+# 报告生成
+jinja2>=3.0.0
+weasyprint>=52.0  # 用于PDF生成
+
+# 测试
+pytest>=6.2.0
+pytest-asyncio>=0.15.0
+pytest-cov>=2.12.0
+
+# 开发工具
+black>=21.0.0
+flake8>=3.9.0
+mypy>=0.910
+
+# 可选依赖（用于高级功能）
+# tensorflow>=2.6.0  # 如果需要TensorFlow后端
+# albumentations>=1.0.0  # 用于数据增强
+# wandb>=0.12.0  # 用于实验跟踪

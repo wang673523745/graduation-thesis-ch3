@@ -1,0 +1,189 @@
+# 红外可见光Agent系统 - 默认配置文件
+
+# 系统配置
+system:
+  name: "红外可见光Agent系统"
+  version: "1.0.0"
+  debug: false
+  log_level: "INFO"
+  max_workers: 4
+  timeout: 300  # 秒
+
+# 数据处理配置
+data:
+  input_dir: "data/samples"
+  output_dir: "data/outputs"
+  supported_formats: ["jpg", "jpeg", "png", "bmp", "tiff"]
+  max_image_size: [2048, 2048]
+  default_target_size: [512, 512]
+
+# 预处理配置
+preprocess:
+  resize_method: "bilinear"  # bilinear, bicubic, nearest
+  enhancement: true
+  normalization: true
+  registration: true
+  histogram_equalization: true
+  noise_reduction: true
+  gamma_correction: 1.0
+  registration_method: "sift"  # sift, surf, orb
+  max_features: 5000
+  good_match_ratio: 0.75
+
+# 融合配置
+fusion:
+  default_method: "weighted_average"  # weighted_average, laplacian, dwt, pca
+  ir_weight: 0.5
+  vis_weight: 0.5
+  enhance_contrast: true
+  preserve_details: true
+  joint_mode: false
+  
+  # 拉普拉斯金字塔融合参数
+  laplacian:
+    levels: 4
+    fusion_rule: "max"  # max, min, average
+    
+  # 小波变换融合参数
+  dwt:
+    wavelet: "db1"
+    levels: 3
+    fusion_rule: "max"
+    
+  # PCA融合参数
+  pca:
+    n_components: 2
+    normalization: true
+
+# 分割配置
+segmentation:
+  default_method: "threshold"  # threshold, watershed, kmeans, grabcut, contour
+  num_classes: 2
+  confidence_threshold: 0.5
+  min_area: 100
+  max_area: 10000
+  morphology_ops: true
+  post_process: true
+  
+  # 阈值分割参数
+  threshold:
+    method: "otsu"  # otsu, adaptive, manual
+    manual_threshold: 128
+    
+  # 分水岭分割参数
+  watershed:
+    distance_threshold: 0.7
+    min_area: 50
+    
+  # K-means分割参数
+  kmeans:
+    max_iter: 100
+    tolerance: 0.001
+    
+  # GrabCut分割参数
+  grabcut:
+    iterations: 5
+    rect_margin: 10
+
+# 评测配置
+metrics:
+  fusion:
+    compute_entropy: true
+    compute_mi: true
+    compute_qabf: true
+    compute_ssim: true
+    compute_psnr: true
+    compute_correlation: true
+    
+  segmentation:
+    compute_miou: true
+    compute_dice: true
+    compute_precision_recall: true
+    compute_accuracy: true
+    compute_hausdorff: false
+
+# 报告配置
+report:
+  output_format: "html"  # html, pdf, json
+  include_visualizations: true
+  include_metrics_table: true
+  include_execution_summary: true
+  figure_dpi: 300
+  figure_size: [12, 8]
+  color_scheme: "viridis"
+  template: "default"
+
+# API配置
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  reload: true
+  log_level: "info"
+  cors_origins: ["*"]
+  max_file_size: 50  # MB
+  upload_dir: "data/uploads"
+
+# 工具配置
+tools:
+  preprocess:
+    max_retries: 3
+    timeout: 30.0
+    
+  fuse:
+    max_retries: 2
+    timeout: 60.0
+    
+  segment:
+    max_retries: 2
+    timeout: 45.0
+    
+  metrics:
+    max_retries: 1
+    timeout: 15.0
+    
+  report:
+    max_retries: 1
+    timeout: 30.0
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/irvis_agent.log"
+  max_size: 10  # MB
+  backup_count: 5
+  console: true
+
+# 缓存配置
+cache:
+  enabled: true
+  max_size: 1000
+  ttl: 3600  # 秒
+  backend: "memory"  # memory, redis
+
+# 性能配置
+performance:
+  enable_profiling: false
+  profile_output: "profiles/"
+  memory_limit: 4096  # MB
+  gpu_memory_fraction: 0.8
+  batch_size: 1
+
+# 安全配置
+security:
+  enable_auth: false
+  api_key_required: false
+  rate_limit: 100  # 请求/分钟
+  allowed_ips: []
+
+# 监控配置
+monitoring:
+  enable_metrics: true
+  metrics_port: 9090
+  health_check_interval: 30  # 秒
+  alert_thresholds:
+    cpu_usage: 80
+    memory_usage: 85
+    disk_usage: 90
+    response_time: 5.0  # 秒
