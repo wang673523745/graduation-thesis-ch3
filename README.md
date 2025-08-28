@@ -4,11 +4,10 @@
 
 ## 🎯 项目目标
 
-- **章目标**：
-  1. 提出一套 **Agent 化** 的系统架构（LLM 调度 + 工具集）
+- **目标**：
+  1. 提出一套 **视觉 Agent 化** 的系统架构（LLM 调度 + 工具集）
   2. 将**融合**与**分割**模型封装成可调用的工具，并引入**评测/报告**工具
-  3. 提供可复现的 **快速 Demo → 正式系统** 迭代路线
-  4. 给出至少 **3 条论文级参考方案**（含非视觉），用于对比与扩展
+
 
 ## 🏗️ 系统架构
 
@@ -46,16 +45,7 @@ irvis-agent/
 - NumPy 1.21+
 - FastAPI 0.68+
 
-### 安装依赖
 
-```bash
-# 克隆项目
-git clone <repository-url>
-cd irvis-agent
-
-# 安装依赖
-pip install -r requirements.txt
-```
 
 ### 运行系统
 
@@ -272,20 +262,6 @@ python main.py --mode test
 3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 打开 Pull Request
-
-## 📄 许可证
-
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
-
-## 📞 联系方式
-
-- 项目维护者：[Your Name]
-- 邮箱：[your.email@example.com]
-- 项目链接：[https://github.com/yourusername/irvis-agent]
-
-## 🙏 致谢
-
-感谢所有为这个项目做出贡献的开发者和研究人员。
 
 ---
 
